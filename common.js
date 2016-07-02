@@ -22,10 +22,15 @@
    *     - Rows to use in average, for previous period. Rows will be taken from end of data.
    *  custom_metric: 'wow_growth' 
    *     - Selector for where to print average <div class="custom_metric" custom_metric="visitor_growth">
+   * modifyData
+   *     - Optional. Function to modify the data before getting the average.
    * }
    */
   function setAvg( attrs ) {
     var data = getData(attrs.query);
+    
+    // Optionally Filter data
+    if( attrs.filter ) data = data.filter( attrs.filter );
 
     // Default to 'Growth' column
     attrs.col = attrs.col || 'Growth';
