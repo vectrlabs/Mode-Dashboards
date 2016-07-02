@@ -37,11 +37,17 @@
     
     var len = data.length;
 
+    // console.log('data', data)
+
     function getAvg( range ) {
       var avg = data.slice(len - range[1], len - range[0]).map(function(p) {
         return p[attrs.col];
       });
       
+      avg = avg.filter(function( p ) {
+        return !!p ? p : false;
+      });
+
       return (_.mean(avg) * 100).toFixed(1) + '%';
     }
     
